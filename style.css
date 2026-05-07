@@ -1,0 +1,67 @@
+body {
+  background: #111;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  text-align: center;
+  padding: 20px 0;
+  background: #222;
+}
+
+.swiper {
+  width: 90%;
+  padding: 40px 0;
+  margin: auto;
+}
+
+.swiper-slide {
+  width: 200px;
+  text-align: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.swiper-slide img {
+  width: 100%;
+  border-radius: 8px;
+  transition: transform 0.3s;
+}
+
+.swiper-slide img:hover {
+  transform: scale(1.05);
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.7);
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.3s;
+  padding: 5px;
+  border-radius: 0 0 8px 8px;
+}
+
+.swiper-slide:hover .overlay {
+  opacity: 1;
+}
+
+.hidden {
+  display: none;
+}
+
+#player-section {
+  text-align: center;
+  padding: 20px;
+}
+
+#back-btn {
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
