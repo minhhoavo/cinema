@@ -1,10 +1,10 @@
 const movies = [
   {
-    title: "Phim Yêu Thích 1",
+    title: "Anintita",
     episode: "Tập 1",
-    video: "https://drive.google.com/uc?export=download&id=FILE_ID_1",
-    sub: "sub/phim1.srt",
-    poster: "poster/phim1.jpg"
+    video: "https://drive.google.com/uc?export=download&id=14rS3Dr9Rd51ZgcMC5w-ltUyFphgcTC-b",
+    sub: "sub/ep1.ass",
+    poster: "poster/thum.jpg"
   },
   {
     title: "Phim Yêu Thích 2",
