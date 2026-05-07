@@ -1,68 +1,66 @@
-// Mini “database” phim
 const movies = [
   {
     title: "Phim Yêu Thích 1",
-    video: "video/phim1.mp4",
+    episode: "Tập 1",
+    video: "https://drive.google.com/uc?export=download&id=FILE_ID_1",
     sub: "sub/phim1.srt",
-    poster: "poster/phim1.jpg",
-    description: "Một bộ phim rất hay về hành động."
+    poster: "poster/phim1.jpg"
   },
   {
     title: "Phim Yêu Thích 2",
-    video: "video/phim2.mp4",
+    episode: "Tập 2",
+    video: "https://drive.google.com/uc?export=download&id=FILE_ID_2",
     sub: "sub/phim2.srt",
-    poster: "poster/phim2.jpg",
-    description: "Một bộ phim hài thú vị."
+    poster: "poster/phim2.jpg"
   }
 ];
 
-const carouselWrapper = document.querySelector(".swiper-wrapper");
+const grid = document.getElementById("movie-grid");
 const playerSection = document.getElementById("player-section");
 const movieTitle = document.getElementById("movie-title");
 const backBtn = document.getElementById("back-btn");
 
-// Render carousel phim
-movies.forEach((movie, index) => {
-  const slide = document.createElement("div");
-  slide.className = "swiper-slide";
-  slide.innerHTML = `
-    <img src="${movie.poster}" alt="${movie.title}">
-    <div class="overlay">
-      <h3>${movie.title}</h3>
-      <p>${movie.description}</p>
-    </div>
-  `;
-  slide.addEventListener("click", () => playMovie(index));
-  carouselWrapper.appendChild(slide);
+// Render grid
+function renderGrid(filter="") {
+  grid.innerHTML = "";
+  movies
+    .filter(m => m.title.toLowerCase().includes(filter.toLowerCase()))
+    .forEach((movie, index) => {
+      const card = document.createElement("div");
+      card.className = "movie-card";
+      card.innerHTML = `
+        <img src="${movie.poster}" alt="${movie.title}">
+        <div class="movie-info">
+          <h4>${movie.title}</h4>
+          <p>${movie.episode}</p>
+        </div>
+      `;
+      card.addEventListener("click", () => playMovie(index));
+      grid.appendChild(card);
+    });
+}
+renderGrid();
+
+// Search
+document.getElementById("search").addEventListener("input", e => {
+  renderGrid(e.target.value);
 });
 
-// Khởi tạo Swiper
-const swiper = new Swiper(".swiper", {
-  slidesPerView: 4,
-  spaceBetween: 30,
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
-});
-
-// Play phim
+// Play movie
 function playMovie(index) {
   const movie = movies[index];
-  document.querySelector("#movie-carousel").classList.add("hidden");
+  grid.classList.add("hidden");
   playerSection.classList.remove("hidden");
-  movieTitle.textContent = movie.title;
+  movieTitle.textContent = `${movie.title} - ${movie.episode}`;
 
   const player = videojs("movie-player");
   player.pause();
   player.src({ type: "video/mp4", src: movie.video });
 
-  // Remove previous tracks
   while(player.remoteTextTracks().length > 0) {
     player.removeRemoteTextTrack(player.remoteTextTracks()[0]);
   }
 
-  // Load sub
   player.addRemoteTextTrack({
     kind: "subtitles",
     src: movie.sub,
@@ -75,10 +73,9 @@ function playMovie(index) {
   player.play();
 }
 
-// Quay lại carousel
+// Back
 backBtn.addEventListener("click", () => {
   playerSection.classList.add("hidden");
-  document.querySelector("#movie-carousel").classList.remove("hidden");
-  const player = videojs("movie-player");
-  player.pause();
+  grid.classList.remove("hidden");
+  videojs("movie-player").pause();
 });

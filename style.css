@@ -1,58 +1,66 @@
 body {
-  background: #111;
+  background: #121212;
   color: #fff;
   font-family: Arial, sans-serif;
   margin: 0;
-  padding: 0;
 }
 
 header {
-  text-align: center;
-  padding: 20px 0;
-  background: #222;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background: #1f1f1f;
 }
 
-.swiper {
-  width: 90%;
-  padding: 40px 0;
-  margin: auto;
+header h1 {
+  margin: 0;
 }
 
-.swiper-slide {
-  width: 200px;
-  text-align: center;
+header input {
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: none;
+  width: 300px;
+}
+
+#movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+  padding: 20px 40px;
+}
+
+.movie-card {
   position: relative;
   cursor: pointer;
+  overflow: hidden;
+  border-radius: 8px;
 }
 
-.swiper-slide img {
+.movie-card img {
   width: 100%;
   border-radius: 8px;
   transition: transform 0.3s;
 }
 
-.swiper-slide img:hover {
+.movie-card:hover img {
   transform: scale(1.05);
 }
 
-.overlay {
+.movie-info {
   position: absolute;
   bottom: 0;
   width: 100%;
-  background: rgba(0,0,0,0.7);
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
   color: #fff;
+  padding: 10px;
   opacity: 0;
   transition: opacity 0.3s;
-  padding: 5px;
-  border-radius: 0 0 8px 8px;
 }
 
-.swiper-slide:hover .overlay {
+.movie-card:hover .movie-info {
   opacity: 1;
-}
-
-.hidden {
-  display: none;
 }
 
 #player-section {
@@ -62,6 +70,10 @@ header {
 
 #back-btn {
   margin-bottom: 10px;
-  padding: 5px 10px;
+  padding: 5px 15px;
   cursor: pointer;
+  background: #1f1f1f;
+  border: none;
+  color: #fff;
+  border-radius: 4px;
 }

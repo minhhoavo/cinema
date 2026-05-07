@@ -4,39 +4,29 @@
   <meta charset="UTF-8">
   <title>My Mini Netflix</title>
   <link rel="stylesheet" href="style.css">
-  <!-- Video.js -->
   <link href="https://vjs.zencdn.net/7.22.1/video-js.css" rel="stylesheet" />
-  <!-- Swiper.js cho carousel -->
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
-  />
 </head>
 <body>
   <header>
     <h1>🎬 My Mini Netflix</h1>
+    <input type="text" id="search" placeholder="Tìm kiếm phim...">
   </header>
 
   <main>
-    <section id="movie-carousel" class="swiper">
-      <div class="swiper-wrapper">
-        <!-- Poster phim được JS render vào đây -->
-      </div>
-      <!-- Navigation -->
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
+    <section id="movie-grid">
+      <!-- JS render poster grid -->
     </section>
 
     <section id="player-section" class="hidden">
-      <button id="back-btn">⬅ Quay lại thư viện</button>
+      <button id="back-btn">⬅ Quay lại</button>
       <h2 id="movie-title"></h2>
       <video
         id="movie-player"
         class="video-js vjs-default-skin"
         controls
         preload="auto"
-        width="800"
-        height="450"
+        width="1000"
+        height="560"
       >
         <p>Trình duyệt của bạn không hỗ trợ video.</p>
       </video>
@@ -44,7 +34,6 @@
   </main>
 
   <script src="https://vjs.zencdn.net/7.22.1/video.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
